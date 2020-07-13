@@ -1,16 +1,19 @@
 package com.co_well.quiz.ui.importt
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.co_well.quiz.R
+import com.co_well.quiz.ui.scan_import_activity.ImportFileActivity
+import com.co_well.quiz.ui.scan_import_activity.ScanActivity
+import kotlinx.android.synthetic.main.fragment_import.*
 
 class ImportFragment : Fragment() {
+    private val TAG = "ImportFragment"
 
     private lateinit var importViewModel: ImportViewModel
 
@@ -19,13 +22,25 @@ class ImportFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        importViewModel =
-                ViewModelProviders.of(this).get(ImportViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_import, container, false)
-        val textView: TextView = root.findViewById(R.id.text_import)
-        importViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        return root
+        return inflater.inflate(R.layout.fragment_import, container, false)
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        importViewModel = ImportViewModel()
+        btn_scan.setOnClickListener { openScan() }
+        btn_import.setOnClickListener { openImport() }
+    }
+
+    fun openScan(){
+        var intent = Intent(activity,ScanActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun openImport(){
+        var intent = Intent(activity,ImportFileActivity::class.java)
+        startActivity(intent)
+    }
+
+
 }
