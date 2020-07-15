@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.BitmapDrawable
-import android.inputmethodservice.InputMethodService
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -12,6 +11,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.co_well.quiz.R
+import com.co_well.quiz.ui.scan_import_activity.create_set.CreateSetActivity
 import com.google.android.gms.vision.Frame
 import com.google.android.gms.vision.text.TextRecognizer
 import kotlinx.android.synthetic.main.activity_scan.*
@@ -33,7 +33,7 @@ class ScanActivity : AppCompatActivity() {
             if (edt_regex_split.text.isEmpty()) {
                 Toast.makeText(this, "Input split", Toast.LENGTH_SHORT).show()
             } else {
-                var regex = edt_regex_split.text
+                var regex = edt_regex_split.text.toString()
                 var text = tv_text_scan.text
 
                 var array = text.split("\n").toTypedArray()

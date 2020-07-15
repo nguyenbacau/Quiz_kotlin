@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.scan_import_activity.CreateSetActivity"></activity>
+        <activity android:name=".ui.scan_import_activity.create_set.CreateSetActivity"></activity>
         <activity android:name=".ui.scan_import_activity.ImportFileActivity" />
         <activity android:name=".ui.scan_import_activity.ScanActivity" />
         <activity
