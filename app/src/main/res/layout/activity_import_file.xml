@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.scan_import_activity.ImportFileActivity">
+    tools:context=".ui.activity.ImportFileActivity">
 
 </androidx.constraintlayout.widget.ConstraintLayout>
