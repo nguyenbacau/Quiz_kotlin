@@ -1,7 +1,6 @@
 package com.co_well.quiz.ui.activity.create_set
 
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.co_well.quiz">
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,9 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.co_well.quiz.ui.activity.create_set.CreateSetActivity"></activity>
-        <activity android:name="com.co_well.quiz.ui.activity.ImportFileActivity" />
-        <activity android:name="com.co_well.quiz.ui.activity.ScanActivity" />
+        <activity android:name=".ui.activity.ImportTextActivity"></activity>
+        <activity android:name=".ui.activity.interf.ImportTextActivity" />
+        <activity android:name=".ui.activity.create_set.CreateSetActivity" />
+        <activity android:name=".ui.activity.ImportFileActivity" />
+        <activity android:name=".ui.activity.ScanActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">

@@ -49,9 +49,9 @@ class ImportFileActivity : AppCompatActivity() {
             readFile()
         }
 
-//        btn_write.setOnClickListener{
-//            writeText()
-//        }
+        btn_write.setOnClickListener{
+            writeText()
+        }
 
         btn_split.setOnClickListener {
             hideKeyBoard()
@@ -86,6 +86,11 @@ class ImportFileActivity : AppCompatActivity() {
         intent.addCategory(Intent.CATEGORY_OPENABLE)
         intent.setType("*/*")
         startActivityForResult(intent, PICK_FILE_REQUEST)
+    }
+
+    fun writeText(){
+        var intent = Intent(this, ImportTextActivity::class.java)
+        startActivity(intent)
     }
 
     override fun onActivityResult(
