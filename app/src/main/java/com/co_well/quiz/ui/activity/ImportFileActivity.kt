@@ -13,7 +13,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.co_well.quiz.R
-import com.co_well.quiz.ui.scan_import_activity.create_set.CreateSetActivity
+import com.co_well.quiz.ui.activity.create_set.CreateSetActivity
 import kotlinx.android.synthetic.main.activity_import_file.*
 import kotlinx.android.synthetic.main.activity_import_file.btn_split
 import kotlinx.android.synthetic.main.activity_import_file.edt_regex_split

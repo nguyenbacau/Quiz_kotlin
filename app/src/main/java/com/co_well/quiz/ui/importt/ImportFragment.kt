@@ -8,7 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.co_well.quiz.R
-import com.co_well.quiz.ui.scan_import_activity.ImportFileActivity
+import com.co_well.quiz.ui.activity.ImportFileActivity
+import com.co_well.quiz.ui.navigation_fragment.importt.ImportViewModel
 import com.co_well.quiz.ui.scan_import_activity.ScanActivity
 import kotlinx.android.synthetic.main.fragment_import.*
 
@@ -38,7 +39,7 @@ class ImportFragment : Fragment() {
     }
 
     fun openImport(){
-        var intent = Intent(activity,ImportFileActivity::class.java)
+        var intent = Intent(activity, ImportFileActivity::class.java)
         startActivity(intent)
     }
 
