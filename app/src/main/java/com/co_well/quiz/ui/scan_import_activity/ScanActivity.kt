@@ -83,8 +83,6 @@ class ScanActivity : AppCompatActivity() {
         edt_regex_split.visibility = View.VISIBLE
         btn_split.visibility = View.VISIBLE
         tv_text_scan.text = stringBuilder
-
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
