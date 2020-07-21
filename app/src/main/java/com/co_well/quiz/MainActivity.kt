@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.co_well.quiz.domain.interactor.ScanImageUseCase
 
 class MainActivity : AppCompatActivity() {
 
