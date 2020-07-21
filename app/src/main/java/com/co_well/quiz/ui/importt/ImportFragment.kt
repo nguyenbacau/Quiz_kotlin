@@ -41,4 +41,6 @@ class ImportFragment : Fragment() {
         var intent = Intent(activity,ImportFileActivity::class.java)
         startActivity(intent)
     }
+
+
 }
