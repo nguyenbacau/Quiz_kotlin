@@ -1,8 +1,11 @@
 package com.co_well.quiz.ui.activity.create_set
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.co_well.quiz.Constant
 import com.co_well.quiz.R
 import kotlinx.android.synthetic.main.layout_item_text_table.view.*
 
@@ -12,11 +15,11 @@ class TextTableAdapter() :
     var list = arrayListOf<String>()
 
     fun addText(string: String) {
-        list.add(0,string)
+        list.add(0, string)
         notifyItemInserted(0)
     }
 
-    fun addRegex(regex: String){
+    fun addRegex(regex: String) {
         this.regex = regex
     }
 
@@ -39,10 +42,17 @@ class TextTableAdapter() :
         ) {
 
         fun bind(string: String, regex: String) {
-            if (string.contains(regex) && !regex.isEmpty()) {
-                var str = string.split(regex).toTypedArray()
-                itemView.edt_english.setText(str[0])
-                itemView.edt_vietnamese.setText(str[1])
+
+            if (!regex.isEmpty()) {
+                if (string.contains(regex)) {
+                    var str = string.split(regex).toTypedArray()
+                    itemView.edt_english.setText(str[0])
+                    itemView.edt_vietnamese.setText(str[1])
+                } else if (string.contains(Constant.regex)) {
+                    var str = string.split(Constant.regex).toTypedArray()
+                    itemView.edt_english.setText(str[0])
+                    itemView.edt_vietnamese.setText(str[1])
+                }
             } else {
                 itemView.edt_english.setText("")
                 itemView.edt_vietnamese.setText("")
