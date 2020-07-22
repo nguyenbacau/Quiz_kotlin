@@ -14,13 +14,13 @@ class ScanViewModel(
 ) : ViewModel() {
 
     val edtRegexSplit: MutableLiveData<String> = MutableLiveData()
-    val textScan: MutableLiveData<String> = MutableLiveData()
+    val tvScan: MutableLiveData<String> = MutableLiveData()
 
     val butonSplitCLick = View.OnClickListener { view ->
         val context = view.context
         hideKeyBoard(view)
         val list: ArrayList<String> = ArrayList()
-        val array = textScan.value.toString().split("\n").toTypedArray()
+        val array = tvScan.value.toString().split("\n").toTypedArray()
         for (i in 0 until array.size) {
             list.add(array[i])
         }

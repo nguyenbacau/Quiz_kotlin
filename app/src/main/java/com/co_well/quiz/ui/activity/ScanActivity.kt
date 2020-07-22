@@ -29,7 +29,7 @@ class ScanActivity : AppCompatActivity() {
         btn_gallery.setOnClickListener { pickFromGallary() }
         btn_split.setOnClickListener {
             scanViewModel.edtRegexSplit.value = edt_regex_split.text.toString()
-            scanViewModel.textScan.value = tv_text_scan.text.toString()
+            scanViewModel.tvScan.value = tv_text_scan.text.toString()
             scanViewModel.butonSplitCLick.onClick(it)
         }
     }
