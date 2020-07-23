@@ -1,9 +1,7 @@
 package com.co_well.quiz.ui.activity.create_set
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.co_well.quiz.Constant
 import com.co_well.quiz.R
@@ -11,8 +9,8 @@ import kotlinx.android.synthetic.main.layout_item_text_table.view.*
 
 class TextTableAdapter() :
     RecyclerView.Adapter<TextTableAdapter.TextTableViewHolder>() {
-    lateinit var regex: String
-    var list = arrayListOf<String>()
+    private lateinit var regex: String
+    private var list = arrayListOf<String>()
 
     fun addText(string: String) {
         list.add(0, string)
@@ -21,6 +19,10 @@ class TextTableAdapter() :
 
     fun addRegex(regex: String) {
         this.regex = regex
+    }
+
+    fun getList(): ArrayList<String>{
+        return list
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TextTableViewHolder {
