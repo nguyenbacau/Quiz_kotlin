@@ -4,19 +4,23 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
-import android.util.Log
-import android.view.View
-import android.widget.Toast
+import com.co_well.quiz.data.database.FlashCardDao
+import com.co_well.quiz.data.database.mapper.FlashCardEntityToFlashCard
+import com.co_well.quiz.data.database.mapper.FlashCardToFlashCardEntity
+import com.co_well.quiz.domain.entity.FlashCard
+import com.co_well.quiz.domain.entity.Set
 import com.co_well.quiz.domain.repository.Repository
 import com.google.android.gms.vision.Frame
 import com.google.android.gms.vision.text.TextRecognizer
 import java.io.FileNotFoundException
-import java.net.URI
 
 
 class CardRepositoryImpl(
+    private val dao: FlashCardDao,
+    private val flashCardToFlashCardEntity: FlashCardToFlashCardEntity,
+    private val flashCardEntityToFlashCard: FlashCardEntityToFlashCard,
     private val textRecognizer: TextRecognizer,
-    private val context : Context
+    private val context: Context
 ) : Repository {
 
     override fun scanImage(imgUri: String): String {
@@ -24,7 +28,8 @@ class CardRepositoryImpl(
         val targetUri = Uri.parse(imgUri)
         val bitmap: Bitmap
         try {
-            bitmap = BitmapFactory.decodeStream(context.contentResolver.openInputStream(targetUri!!))
+            bitmap =
+                BitmapFactory.decodeStream(context.contentResolver.openInputStream(targetUri!!))
 
             var frame = Frame.Builder().setBitmap(bitmap).build()
             var sparseArray = textRecognizer.detect(frame)
@@ -41,6 +46,21 @@ class CardRepositoryImpl(
         }
 
         return stringBuilder.toString()
+    }
+
+    override fun insertCard(cardList: ArrayList<FlashCard>) {
+        for (flashCard in cardList) {
+            dao.insertCard(flashCardToFlashCardEntity.map(flashCard))
+        }
+    }
+
+    override fun getAll(): ArrayList<FlashCard> {
+        val entityList = dao.getAll()
+        val list = ArrayList<FlashCard>()
+        for (flashCardEntity in entityList) {
+            list.add(flashCardEntityToFlashCard.map(flashCardEntity))
+        }
+        return list
     }
 
     override fun importFile() {
