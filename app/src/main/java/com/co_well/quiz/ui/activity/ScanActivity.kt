@@ -3,6 +3,7 @@ package com.co_well.quiz.ui.activity
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -36,6 +37,7 @@ class ScanActivity : AppCompatActivity() {
 
     fun pickFromGallary() {
         var intent = Intent(Intent.ACTION_PICK)
+        var intent = Intent(Intent.ACTION_GET_CONTENT)
         intent.setType("image/*")
         startActivityForResult(intent, GALLERY_REQUEST_CODE)
     }
@@ -45,6 +47,7 @@ class ScanActivity : AppCompatActivity() {
         edt_regex_split.visibility = View.VISIBLE
         btn_split.visibility = View.VISIBLE
         val text = scanViewModel.detect(imgUri)
+        Log.d("TEXT",text)
         tv_text_scan.text = text
     }
 
