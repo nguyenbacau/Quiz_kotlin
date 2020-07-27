@@ -36,7 +36,7 @@ class ScanActivity : AppCompatActivity() {
     }
 
     fun pickFromGallary() {
-        var intent = Intent(Intent.ACTION_PICK)
+//        var intent = Intent(Intent.ACTION_PICK)
         var intent = Intent(Intent.ACTION_GET_CONTENT)
         intent.setType("image/*")
         startActivityForResult(intent, GALLERY_REQUEST_CODE)

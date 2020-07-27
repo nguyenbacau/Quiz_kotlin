@@ -1,21 +1,21 @@
 package com.co_well.quiz.ui.navigation_fragment.importt
 
-import android.content.Context
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.edit
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.co_well.quiz.R
+import com.co_well.quiz.ui.activity.create_set.TextTableAdapter
 import kotlinx.android.synthetic.main.fragment_import.*
+import kotlinx.android.synthetic.main.fragment_import.flab_add
+import kotlinx.android.synthetic.main.fragment_import.recycler_view_table
 
 class ImportFragment : Fragment() {
     private lateinit var importViewModel: ImportViewModel
-//    private val sharePref = activity?.getSharedPreferences("Quiz", Context.MODE_PRIVATE)
+//  private val sharePref = activity?.getSharedPreferences("Quiz", Context.MODE_PRIVATE)
+    private lateinit var adapterTable: TextTableAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,6 +31,25 @@ class ImportFragment : Fragment() {
 //        onEdtListener()
         btn_scan.setOnClickListener(importViewModel.buttonScanClick)
         btn_import.setOnClickListener(importViewModel.buttonImportClick)
+
+//        recycler_view_table.layoutManager = LinearLayoutManager()
+        recycler_view_table.layoutManager = LinearLayoutManager(activity)
+        adapterTable = TextTableAdapter()
+        adapterTable.addRegex("")
+        recycler_view_table.adapter = adapterTable
+
+        addRow()
+
+//        if(tv_title.text != null){
+//            Common.cu
+//        }
+    }
+    
+    fun addRow() {
+        flab_add.setOnClickListener {
+            adapterTable.addText("")
+            recycler_view_table.scrollToPosition(0)
+        }
     }
 
 //    fun onEdtListener() {
