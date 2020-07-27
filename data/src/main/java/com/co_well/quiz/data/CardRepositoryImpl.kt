@@ -4,11 +4,14 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
-import com.co_well.quiz.data.database.FlashCardDao
+import com.co_well.quiz.data.database.Dao
+import com.co_well.quiz.data.database.entity.SetEntity
 import com.co_well.quiz.data.database.mapper.FlashCardEntityToFlashCard
 import com.co_well.quiz.data.database.mapper.FlashCardToFlashCardEntity
+import com.co_well.quiz.data.database.mapper.SetCardEntityToSetCard
 import com.co_well.quiz.domain.entity.FlashCard
 import com.co_well.quiz.domain.entity.Set
+import com.co_well.quiz.domain.entity.SetCard
 import com.co_well.quiz.domain.repository.Repository
 import com.google.android.gms.vision.Frame
 import com.google.android.gms.vision.text.TextRecognizer
@@ -16,13 +19,13 @@ import java.io.FileNotFoundException
 
 
 class CardRepositoryImpl(
-    private val dao: FlashCardDao,
+    private val dao: Dao,
     private val flashCardToFlashCardEntity: FlashCardToFlashCardEntity,
     private val flashCardEntityToFlashCard: FlashCardEntityToFlashCard,
+    private val setCardEntityToSetCard: SetCardEntityToSetCard,
     private val textRecognizer: TextRecognizer,
     private val context: Context
 ) : Repository {
-
     override fun scanImage(imgUri: String): String {
         val stringBuilder = StringBuilder()
         val targetUri = Uri.parse(imgUri)
@@ -54,13 +57,17 @@ class CardRepositoryImpl(
         }
     }
 
-    override fun getAll(): ArrayList<FlashCard> {
-        val entityList = dao.getAll()
-        val list = ArrayList<FlashCard>()
-        for (flashCardEntity in entityList) {
-            list.add(flashCardEntityToFlashCard.map(flashCardEntity))
+    override fun insertSet(set: Set) {
+        dao.insertSet(SetEntity(set.name))
+    }
+
+    override fun getAllSet(): ArrayList<SetCard> {
+        val list = dao.getAllSet()
+        val listSet = ArrayList<SetCard>()
+        for (setCardEntity in list) {
+            listSet.add(setCardEntityToSetCard.map(setCardEntity))
         }
-        return list
+        return listSet
     }
 
     override fun importFile() {
