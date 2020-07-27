@@ -3,14 +3,12 @@ package com.co_well.quiz
 import android.content.Context
 import androidx.room.Room
 import com.co_well.quiz.data.CardRepositoryImpl
-import com.co_well.quiz.data.database.FlashCardDao
+import com.co_well.quiz.data.database.Dao
 import com.co_well.quiz.data.database.MyDatabase
 import com.co_well.quiz.data.database.mapper.FlashCardEntityToFlashCard
 import com.co_well.quiz.data.database.mapper.FlashCardToFlashCardEntity
-import com.co_well.quiz.domain.interactor.GetAllSetUseCase
-import com.co_well.quiz.domain.interactor.ImportFileUseCase
-import com.co_well.quiz.domain.interactor.InsertToDbUseCase
-import com.co_well.quiz.domain.interactor.ScanImageUseCase
+import com.co_well.quiz.data.database.mapper.SetCardEntityToSetCard
+import com.co_well.quiz.domain.interactor.*
 import com.co_well.quiz.domain.repository.Repository
 import com.co_well.quiz.ui.activity.ScanActivity
 import com.co_well.quiz.ui.activity.create_set.CreateSetActivity
@@ -27,11 +25,12 @@ object InjectionUtil {
             context.applicationContext,
             MyDatabase::class.java, "Sample.db"
         )
+            .fallbackToDestructiveMigration()
             .allowMainThreadQueries()
             .build()
     }
 
-    val dao: FlashCardDao by lazy {
+    val dao: Dao by lazy {
         database.dao()
     }
     val repoImpl: Repository by lazy {
@@ -39,6 +38,7 @@ object InjectionUtil {
             dao = dao,
             flashCardToFlashCardEntity = FlashCardToFlashCardEntity(),
             flashCardEntityToFlashCard = FlashCardEntityToFlashCard(),
+            setCardEntityToSetCard = SetCardEntityToSetCard(),
             textRecognizer = textRecognizer,
             context = context
         )
@@ -52,12 +52,16 @@ object InjectionUtil {
         ImportFileUseCase()
     }
 
-    val insertDB : InsertToDbUseCase by lazy {
-        InsertToDbUseCase(repoImpl)
+    val insertCard: InsertCardUseCase by lazy {
+        InsertCardUseCase(repoImpl)
     }
 
-    val getAll : GetAllSetUseCase by lazy {
+    val getAllSet: GetAllSetUseCase by lazy {
         GetAllSetUseCase(repoImpl)
+    }
+
+    val insertSet: InsertSetUseCase by lazy {
+        InsertSetUseCase(repoImpl)
     }
 
     fun inject(activity: ScanActivity) {
@@ -65,11 +69,11 @@ object InjectionUtil {
         activity.scanImageUseCase = scanImage
     }
 
-    fun injectCreateSet(activity: CreateSetActivity){
+    fun injectCreateSet(activity: CreateSetActivity) {
         context = activity.applicationContext
-        activity.insertToDbUseCase = insertDB
-        activity.getAllCardUseCase = getAll
+        activity.insertCardUseCase = insertCard
+        activity.getAllSetUseCase = getAllSet
+        activity.insertSetUseCase = insertSet
     }
-
 
 }

@@ -1,7 +1,5 @@
 package com.co_well.quiz.ui.activity.create_set
 
-import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -15,7 +13,8 @@ import com.co_well.quiz.R
 import com.co_well.quiz.domain.entity.FlashCard
 import com.co_well.quiz.domain.entity.Set
 import com.co_well.quiz.domain.interactor.GetAllSetUseCase
-import com.co_well.quiz.domain.interactor.InsertToDbUseCase
+import com.co_well.quiz.domain.interactor.InsertSetUseCase
+import com.co_well.quiz.domain.interactor.InsertCardUseCase
 import com.co_well.quiz.ui.activity.interf.OnTextClick
 import kotlinx.android.synthetic.main.activity_create_set.*
 
@@ -24,9 +23,9 @@ class CreateSetActivity : AppCompatActivity(), OnTextClick {
     private lateinit var list: ArrayList<String>
     private lateinit var regex: String
     private lateinit var adapterTable: TextTableAdapter
-    lateinit var insertToDbUseCase: InsertToDbUseCase
-    lateinit var getAllCardUseCase: GetAllSetUseCase
-    lateinit var sharePref : SharedPreferences
+    lateinit var insertCardUseCase: InsertCardUseCase
+    lateinit var getAllSetUseCase: GetAllSetUseCase
+    lateinit var insertSetUseCase: InsertSetUseCase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         InjectionUtil.injectCreateSet(this)
@@ -35,7 +34,6 @@ class CreateSetActivity : AppCompatActivity(), OnTextClick {
 
         list = intent.extras?.get("listArray") as ArrayList<String>
         regex = intent.extras?.get("regex") as String
-//        sharePref = getPreferences(Context.MODE_PRIVATE)
         //recycler_view_show
         recycler_view_show.layoutManager =
             GridLayoutManager(this, 3, GridLayoutManager.HORIZONTAL, false)
@@ -70,14 +68,22 @@ class CreateSetActivity : AppCompatActivity(), OnTextClick {
         val listFlashCard = arrayListOf<FlashCard>()
         for (string in list) {
             val str = string.split(regex).toTypedArray()
-            val flashCard = FlashCard(str[0], str[1])
+            val flashCard = FlashCard(0,"hello",str[0], str[1])
             listFlashCard.add(flashCard)
         }
-        insertToDbUseCase(listFlashCard)
+        insertCardUseCase(listFlashCard)
 
-        val list = getAllCardUseCase()
-        for (i in list) {
-                Log.e("zzz", "word: " + i.word + "define" + i.define)
+        val set = Set("hello")
+
+        insertSetUseCase(set)
+
+
+        val listGet = getAllSetUseCase()
+        for (i in listGet){
+            val a = i.cardList
+            for (j in a){
+                Log.e("zzz", "saveData: " + j.word + "---------" + j.define )
+            }
         }
     }
 
