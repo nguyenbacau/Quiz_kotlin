@@ -40,11 +40,11 @@ class ImportFragment : Fragment() {
 
         addRow()
 
-//        if(tv_title.text != null){
-//            Common.cu
-//        }
+        if(tv_title.text != null){
+            Common.tittle = tv_title.text.toString();
+        }
     }
-    
+
     fun addRow() {
         flab_add.setOnClickListener {
             adapterTable.addText("")
