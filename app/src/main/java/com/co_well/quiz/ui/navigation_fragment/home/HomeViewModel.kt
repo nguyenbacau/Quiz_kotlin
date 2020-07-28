@@ -3,11 +3,20 @@ package com.co_well.quiz.ui.navigation_fragment.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.co_well.quiz.domain.entity.SetCard
+import com.co_well.quiz.domain.interactor.GetAllSetUseCase
 
-class HomeViewModel : ViewModel() {
-
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+class HomeViewModel(
+    private val getAllSetUseCase: GetAllSetUseCase
+) : ViewModel() {
+    companion object {
+        private var _listSetCard: MutableLiveData<MutableList<SetCard>> = MutableLiveData()
     }
-    val text: LiveData<String> = _text
+
+    val listSetCar: LiveData<MutableList<SetCard>>
+        get() = _listSetCard
+
+    fun getAllSetCard() {
+        _listSetCard.value = getAllSetUseCase().toMutableList()
+    }
 }

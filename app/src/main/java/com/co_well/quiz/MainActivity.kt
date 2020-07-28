@@ -1,17 +1,18 @@
 package com.co_well.quiz
 
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.co_well.quiz.domain.interactor.ScanImageUseCase
+import com.co_well.quiz.domain.interactor.GetAllSetUseCase
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
-
+    lateinit var getAllSetUseCase: GetAllSetUseCase
     override fun onCreate(savedInstanceState: Bundle?) {
+        InjectionUtil.injectMainActivity(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val navView: BottomNavigationView = findViewById(R.id.nav_view)

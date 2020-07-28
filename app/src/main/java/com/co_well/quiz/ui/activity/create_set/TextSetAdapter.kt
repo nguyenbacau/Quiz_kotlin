@@ -15,9 +15,7 @@ class TextSetAdapter(listText: ArrayList<String>, onTextClick: OnTextClick) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TextViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.layout_item_text,parent,false)
-        return TextViewHolder(
-            view
-        )
+        return TextViewHolder(view)
     }
 
     override fun getItemCount(): Int = list.size
