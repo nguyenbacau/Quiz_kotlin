@@ -13,5 +13,7 @@ interface Repository {
 
     fun getAllSet(): ArrayList<SetCard>
 
+    fun updateListCard(listCard: List<FlashCard>)
+
     fun importFile()
 }

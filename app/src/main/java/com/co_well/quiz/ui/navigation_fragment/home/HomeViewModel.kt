@@ -9,9 +9,7 @@ import com.co_well.quiz.domain.interactor.GetAllSetUseCase
 class HomeViewModel(
     private val getAllSetUseCase: GetAllSetUseCase
 ) : ViewModel() {
-    companion object {
-        private var _listSetCard: MutableLiveData<MutableList<SetCard>> = MutableLiveData()
-    }
+    private var _listSetCard: MutableLiveData<MutableList<SetCard>> = MutableLiveData()
 
     val listSetCar: LiveData<MutableList<SetCard>>
         get() = _listSetCard

@@ -12,6 +12,7 @@ import com.co_well.quiz.domain.interactor.*
 import com.co_well.quiz.domain.repository.Repository
 import com.co_well.quiz.ui.activity.ScanActivity
 import com.co_well.quiz.ui.activity.create_set.CreateSetActivity
+import com.co_well.quiz.ui.activity.learn.LearnActivity
 import com.google.android.gms.vision.text.TextRecognizer
 
 object InjectionUtil {
@@ -64,7 +65,11 @@ object InjectionUtil {
         InsertSetUseCase(repoImpl)
     }
 
-    fun injectMainActivity(activity: MainActivity){
+    val updateListCard: UpdateListCardUseCase by lazy {
+        UpdateListCardUseCase(repoImpl)
+    }
+
+    fun injectMain(activity: MainActivity){
         context = activity.applicationContext
         activity.getAllSetUseCase = getAllSet
     }
@@ -79,6 +84,11 @@ object InjectionUtil {
         activity.insertCardUseCase = insertCard
         activity.getAllSetUseCase = getAllSet
         activity.insertSetUseCase = insertSet
+    }
+
+    fun injectLearn(activity: LearnActivity){
+        context = activity.applicationContext
+        activity.updateListCardUseCase = updateListCard
     }
 
 }

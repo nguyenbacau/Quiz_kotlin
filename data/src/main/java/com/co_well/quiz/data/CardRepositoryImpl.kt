@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import com.co_well.quiz.data.database.Dao
+import com.co_well.quiz.data.database.entity.FlashCardEntity
 import com.co_well.quiz.data.database.entity.SetEntity
 import com.co_well.quiz.data.database.mapper.FlashCardEntityToFlashCard
 import com.co_well.quiz.data.database.mapper.FlashCardToFlashCardEntity
@@ -68,6 +69,14 @@ class CardRepositoryImpl(
             listSet.add(setCardEntityToSetCard.map(setCardEntity))
         }
         return listSet
+    }
+
+    override fun updateListCard(listCard: List<FlashCard>) {
+        val list = ArrayList<FlashCardEntity>()
+        for (flashCard in listCard) {
+            list.add(flashCardToFlashCardEntity.map(flashCard))
+        }
+        dao.updateListCard(list)
     }
 
     override fun importFile() {

@@ -12,7 +12,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class MainActivity : AppCompatActivity() {
     lateinit var getAllSetUseCase: GetAllSetUseCase
     override fun onCreate(savedInstanceState: Bundle?) {
-        InjectionUtil.injectMainActivity(this)
+        InjectionUtil.injectMain(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val navView: BottomNavigationView = findViewById(R.id.nav_view)

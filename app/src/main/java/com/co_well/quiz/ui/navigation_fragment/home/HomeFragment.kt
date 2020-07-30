@@ -50,4 +50,5 @@ class HomeFragment : Fragment(), OnSetClick {
         intent.putExtra("setCard", setCard)
         startActivity(intent)
     }
+
 }

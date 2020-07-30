@@ -2,21 +2,65 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/card_view_learn"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
+    android:layout_height="200dp"
     android:layout_margin="10dp">
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/relative_layout_learn"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/tv_learn"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_above="@id/ll1"
+            android:layout_alignParentTop="true"
             android:gravity="center"
             android:text="hello"
             android:textSize="25sp" />
-    </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:weightSum="4">
+
+            <Button
+                android:id="@+id/btn_lv1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:text="-" />
+
+            <Button
+                android:id="@+id/btn_lv2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:text="+" />
+
+            <Button
+                android:id="@+id/btn_lv3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:text="++" />
+
+            <Button
+                android:id="@+id/btn_lv4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:text="Done"
+                android:textAllCaps="false" />
+
+        </LinearLayout>
+    </RelativeLayout>
 
 </androidx.cardview.widget.CardView>
