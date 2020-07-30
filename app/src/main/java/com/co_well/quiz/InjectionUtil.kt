@@ -64,6 +64,11 @@ object InjectionUtil {
         InsertSetUseCase(repoImpl)
     }
 
+    fun injectMainActivity(activity: MainActivity){
+        context = activity.applicationContext
+        activity.getAllSetUseCase = getAllSet
+    }
+
     fun inject(activity: ScanActivity) {
         context = activity.applicationContext
         activity.scanImageUseCase = scanImage

@@ -28,6 +28,8 @@ class SetCardEntityToSetCard {
             cardId = flashCardEntity.cardId,
             setName = flashCardEntity.setName,
             word = flashCardEntity.word,
-            define = flashCardEntity.define)
+            define = flashCardEntity.define,
+            flip = true
+        )
     }
 }
