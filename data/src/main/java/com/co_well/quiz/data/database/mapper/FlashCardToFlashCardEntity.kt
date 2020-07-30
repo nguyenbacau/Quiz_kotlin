@@ -11,6 +11,9 @@ class FlashCardToFlashCardEntity {
             setName = flashCard.setName,
             word = flashCard.word,
             define = flashCard.define
+            define = flashCard.define,
+            done = flashCard.done,
+            flip = flashCard.flip
         )
     }
 }

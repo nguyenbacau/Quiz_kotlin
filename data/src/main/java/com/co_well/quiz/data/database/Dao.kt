@@ -22,4 +22,6 @@ abstract class Dao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun insertSet(setEntity: SetEntity)
 
+    @Update
+    abstract fun updateListCard(listCard: List<FlashCardEntity>)
 }

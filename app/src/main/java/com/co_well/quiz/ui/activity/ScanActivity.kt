@@ -32,6 +32,7 @@ class ScanActivity : AppCompatActivity() {
             scanViewModel.edtRegexSplit.value = edt_regex_split.text.toString()
             scanViewModel.tvScan.value = tv_text_scan.text.toString()
             scanViewModel.butonSplitCLick.onClick(it)
+            finish()
         }
     }
 

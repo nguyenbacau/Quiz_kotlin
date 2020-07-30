@@ -68,12 +68,12 @@ class CreateSetActivity : AppCompatActivity(), OnTextClick {
         val listFlashCard = arrayListOf<FlashCard>()
         for (string in list) {
             val str = string.split(regex).toTypedArray()
-            val flashCard = FlashCard(0,"hello",str[0], str[1], true)
+            val flashCard = FlashCard(0,"hi",str[0], str[1], 1,true)
             listFlashCard.add(flashCard)
         }
         insertCardUseCase(listFlashCard)
 
-        val set = Set("hello")
+        val set = Set("hi")
 
         insertSetUseCase(set)
 
@@ -98,6 +98,7 @@ class CreateSetActivity : AppCompatActivity(), OnTextClick {
                 Toast.makeText(this, "save", Toast.LENGTH_SHORT).show()
                 val list = adapterTable.getList()
                 saveData(list)
+                finish()
                 true
             }
             else -> super.onOptionsItemSelected(item)
