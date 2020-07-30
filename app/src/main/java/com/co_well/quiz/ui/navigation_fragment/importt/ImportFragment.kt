@@ -2,6 +2,7 @@ package com.co_well.quiz.ui.navigation_fragment.importt
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
@@ -43,6 +44,7 @@ class ImportFragment : Fragment() {
         if(tv_title.text != null){
             Common.tittle = tv_title.text.toString();
         }
+
     }
 
     fun addRow() {
@@ -51,6 +53,8 @@ class ImportFragment : Fragment() {
             recycler_view_table.scrollToPosition(0)
         }
     }
+
+
 
 //    fun onEdtListener() {
 //        edt_set_name.addTextChangedListener(object : TextWatcher {
