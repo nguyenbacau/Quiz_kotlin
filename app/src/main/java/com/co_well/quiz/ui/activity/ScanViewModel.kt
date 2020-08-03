@@ -21,8 +21,8 @@ class ScanViewModel(
         hideKeyBoard(view)
         val list: ArrayList<String> = ArrayList()
         val array = tvScan.value.toString().split("\n").toTypedArray()
-        for (i in 0 until array.size) {
-            list.add(array[i])
+        for (i in array) {
+            list.add(i)
         }
         val intent = Intent(context, CreateSetActivity::class.java)
         intent.putExtra("listArray", list)

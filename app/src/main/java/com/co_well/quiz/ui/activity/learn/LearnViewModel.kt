@@ -13,7 +13,7 @@ class LearnViewModel : ViewModel() {
     val listFlashCard: LiveData<MutableList<FlashCard>>
         get() = _listFlashCard
 
-    fun addList(list: List<FlashCard>) {
+    fun setList(list: List<FlashCard>) {
         _listFlashCard.value = list.toMutableList()
     }
 }

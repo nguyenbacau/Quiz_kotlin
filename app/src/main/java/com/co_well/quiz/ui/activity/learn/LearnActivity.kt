@@ -4,7 +4,6 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
 import android.os.Bundle
-import android.util.Log
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import android.widget.Button
@@ -43,7 +42,7 @@ class LearnActivity : AppCompatActivity(), OnLearnClick {
             adapter = learnAdapter
         }
 
-        learnViewModel.addList(setCard.cardList)
+        learnViewModel.setList(setCard.cardList)
         learnViewModel.listFlashCard.observe(this, Observer {
             learnAdapter.addListSetCard(it)
         })

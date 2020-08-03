@@ -15,7 +15,7 @@ class SetCardEntityToSetCard {
     }
 
 
-    fun mapList(listEntity: List<FlashCardEntity>): List<FlashCard> {
+    private fun mapList(listEntity: List<FlashCardEntity>): List<FlashCard> {
         val list = mutableListOf<FlashCard>()
         for (flashCardEntity in listEntity) {
             list.add(mapCard(flashCardEntity))
@@ -23,7 +23,7 @@ class SetCardEntityToSetCard {
         return list
     }
 
-    fun mapCard(flashCardEntity: FlashCardEntity): FlashCard {
+    private fun mapCard(flashCardEntity: FlashCardEntity): FlashCard {
         return FlashCard(
             cardId = flashCardEntity.cardId,
             setName = flashCardEntity.setName,
