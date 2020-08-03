@@ -20,6 +20,10 @@ abstract class Dao {
     @Query("SELECT * FROM SetEntity")
     abstract fun getAllSet(): Observable<List<SetCardEntity>>
 
+    @Transaction
+    @Query("SELECT * FROM SetEntity WHERE name = :name")
+    abstract fun getSet(name: String): Observable<SetCardEntity>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun insertSet(setEntity: SetEntity)
 

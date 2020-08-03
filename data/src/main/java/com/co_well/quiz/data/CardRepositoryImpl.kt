@@ -76,6 +76,12 @@ class CardRepositoryImpl(
         }
     }
 
+    override fun getSet(name: String): Observable<SetCard> {
+        return dao.getSet(name).map { cardEntity ->
+            setCardEntityToSetCard.map(cardEntity)
+        }
+    }
+
     override fun updateListCard(listCard: List<FlashCard>) {
         val list = ArrayList<FlashCardEntity>()
         for (flashCard in listCard) {

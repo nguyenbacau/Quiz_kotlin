@@ -14,6 +14,8 @@ interface Repository {
 
     fun getAllSet(): Observable<List<SetCard>>
 
+    fun getSet(name: String): Observable<SetCard>
+
     fun updateListCard(listCard: List<FlashCard>)
 
     fun importFile()

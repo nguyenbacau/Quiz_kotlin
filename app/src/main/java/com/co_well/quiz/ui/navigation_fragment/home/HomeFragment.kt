@@ -47,7 +47,7 @@ class HomeFragment : Fragment(), OnSetClick {
 
     override fun setClick(setCard: SetCard) {
         val intent = Intent(context, LearnActivity::class.java)
-        intent.putExtra("setCard", setCard)
+        intent.putExtra("set_name", setCard.name)
         startActivity(intent)
     }
 

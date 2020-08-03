@@ -21,7 +21,7 @@ class HomeViewModel(
         get() = _listSetCard
 
     fun getAllSetCard() {
-        compositeDisposable.add(getAllSetUseCase().subscribeOn(Schedulers.single())
+        compositeDisposable.add(getAllSetUseCase().subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { result -> _listSetCard.value = result.toMutableList() },

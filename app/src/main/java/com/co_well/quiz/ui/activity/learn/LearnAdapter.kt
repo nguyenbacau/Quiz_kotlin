@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
@@ -18,9 +20,9 @@ class LearnAdapter(onLearnClick: OnLearnClick) :
     private val onClick = onLearnClick
 
     fun addListSetCard(listFlashCard: List<FlashCard>) {
-        val count = list.size
+        list.clear()
         list.addAll(listFlashCard)
-        notifyItemRangeInserted(count, listFlashCard.size)
+        notifyDataSetChanged()
     }
 
     fun getList(): List<FlashCard>{
@@ -43,18 +45,20 @@ class LearnAdapter(onLearnClick: OnLearnClick) :
     class LearnViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private var textView: TextView
         private var cardView: CardView
-        private var btnlv1: Button
-        private var btnlv2: Button
-        private var btnlv3: Button
-        private var btnlv4: Button
+        private var btnFullScreen: ImageView
+//        private var btnlv1: Button
+//        private var btnlv2: Button
+//        private var btnlv3: Button
+//        private var btnlv4: Button
 
         init {
             textView = view.findViewById(R.id.tv_learn)
             cardView = view.findViewById(R.id.card_view_learn)
-            btnlv1 = view.findViewById(R.id.btn_lv1)
-            btnlv2 = view.findViewById(R.id.btn_lv2)
-            btnlv3 = view.findViewById(R.id.btn_lv3)
-            btnlv4 = view.findViewById(R.id.btn_lv4)
+            btnFullScreen = view.findViewById(R.id.btn_fullScreen)
+//            btnlv1 = view.findViewById(R.id.btn_lv1)
+//            btnlv2 = view.findViewById(R.id.btn_lv2)
+//            btnlv3 = view.findViewById(R.id.btn_lv3)
+//            btnlv4 = view.findViewById(R.id.btn_lv4)
         }
 
         fun bind(flashCard: FlashCard, onLearnClick: OnLearnClick, position: Int) {
@@ -64,41 +68,43 @@ class LearnAdapter(onLearnClick: OnLearnClick) :
                 textView.text = flashCard.define
             }
 
-            when(flashCard.done){
-                1 -> {
-                    btnlv1.setBackgroundResource(R.color.colorAccent)
-                    btnlv2.setBackgroundResource(R.color.colorPrimary)
-                    btnlv3.setBackgroundResource(R.color.colorPrimary)
-                    btnlv4.setBackgroundResource(R.color.colorPrimary)
-                }
+            btnFullScreen.setOnClickListener{onLearnClick.buttonFullScreenClick()}
 
-                2 -> {
-                    btnlv1.setBackgroundResource(R.color.colorPrimary)
-                    btnlv2.setBackgroundResource(R.color.colorAccent)
-                    btnlv3.setBackgroundResource(R.color.colorPrimary)
-                    btnlv4.setBackgroundResource(R.color.colorPrimary)
-                }
-
-                3 -> {
-                    btnlv1.setBackgroundResource(R.color.colorPrimary)
-                    btnlv2.setBackgroundResource(R.color.colorPrimary)
-                    btnlv3.setBackgroundResource(R.color.colorAccent)
-                    btnlv4.setBackgroundResource(R.color.colorPrimary)
-                }
-
-                4 -> {
-                    btnlv1.setBackgroundResource(R.color.colorPrimary)
-                    btnlv2.setBackgroundResource(R.color.colorPrimary)
-                    btnlv3.setBackgroundResource(R.color.colorPrimary)
-                    btnlv4.setBackgroundResource(R.color.colorAccent)
-                }
-            }
+//            when(flashCard.done){
+//                1 -> {
+//                    btnlv1.setBackgroundResource(R.color.colorAccent)
+//                    btnlv2.setBackgroundResource(R.color.colorPrimary)
+//                    btnlv3.setBackgroundResource(R.color.colorPrimary)
+//                    btnlv4.setBackgroundResource(R.color.colorPrimary)
+//                }
+//
+//                2 -> {
+//                    btnlv1.setBackgroundResource(R.color.colorPrimary)
+//                    btnlv2.setBackgroundResource(R.color.colorAccent)
+//                    btnlv3.setBackgroundResource(R.color.colorPrimary)
+//                    btnlv4.setBackgroundResource(R.color.colorPrimary)
+//                }
+//
+//                3 -> {
+//                    btnlv1.setBackgroundResource(R.color.colorPrimary)
+//                    btnlv2.setBackgroundResource(R.color.colorPrimary)
+//                    btnlv3.setBackgroundResource(R.color.colorAccent)
+//                    btnlv4.setBackgroundResource(R.color.colorPrimary)
+//                }
+//
+//                4 -> {
+//                    btnlv1.setBackgroundResource(R.color.colorPrimary)
+//                    btnlv2.setBackgroundResource(R.color.colorPrimary)
+//                    btnlv3.setBackgroundResource(R.color.colorPrimary)
+//                    btnlv4.setBackgroundResource(R.color.colorAccent)
+//                }
+//            }
 
             textView.setOnClickListener { onLearnClick.learnClick(flashCard, cardView, textView) }
-            btnlv1.setOnClickListener {onLearnClick.buttonClick(flashCard, btnlv1, position) }
-            btnlv2.setOnClickListener {onLearnClick.buttonClick(flashCard, btnlv2, position) }
-            btnlv3.setOnClickListener {onLearnClick.buttonClick(flashCard, btnlv3, position) }
-            btnlv4.setOnClickListener {onLearnClick.buttonClick(flashCard, btnlv4, position) }
+//            btnlv1.setOnClickListener {onLearnClick.buttonClick(flashCard, btnlv1, position) }
+//            btnlv2.setOnClickListener {onLearnClick.buttonClick(flashCard, btnlv2, position) }
+//            btnlv3.setOnClickListener {onLearnClick.buttonClick(flashCard, btnlv3, position) }
+//            btnlv4.setOnClickListener {onLearnClick.buttonClick(flashCard, btnlv4, position) }
 
         }
     }

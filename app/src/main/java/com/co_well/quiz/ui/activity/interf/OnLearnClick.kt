@@ -8,4 +8,5 @@ import com.co_well.quiz.domain.entity.FlashCard
 interface OnLearnClick {
     fun learnClick(flashCard: FlashCard, cardView: CardView, textView: TextView)
     fun buttonClick(flashCard: FlashCard, button: Button, position: Int)
+    fun buttonFullScreenClick()
 }
