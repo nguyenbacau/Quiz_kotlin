@@ -16,6 +16,7 @@ import com.co_well.quiz.domain.interactor.GetAllSetUseCase
 import com.co_well.quiz.domain.interactor.InsertSetUseCase
 import com.co_well.quiz.domain.interactor.InsertCardUseCase
 import com.co_well.quiz.ui.activity.interf.OnTextClick
+import com.co_well.quiz.ui.navigation_fragment.importt.Common
 import kotlinx.android.synthetic.main.activity_create_set.*
 
 
@@ -35,7 +36,7 @@ class CreateSetActivity : AppCompatActivity(), OnTextClick {
         list = intent.extras?.get("listArray") as ArrayList<String>
         regex = intent.extras?.get("regex") as String
         //recycler_view_show
-        recycler_view_show.layoutManager =
+        recycler_view_show .layoutManager =
             GridLayoutManager(this, 3, GridLayoutManager.HORIZONTAL, false)
         recycler_view_show.addItemDecoration(
             GridSpacingItemDecoration(20, 3)
@@ -68,12 +69,12 @@ class CreateSetActivity : AppCompatActivity(), OnTextClick {
         val listFlashCard = arrayListOf<FlashCard>()
         for (string in list) {
             val str = string.split(regex).toTypedArray()
-            val flashCard = FlashCard(0, "hi", str[0], str[1], 1, true)
+            val flashCard = FlashCard(0, Common.tittle, str[0], str[1], true, 1)
             listFlashCard.add(flashCard)
         }
         insertCardUseCase(listFlashCard)
 
-        val set = Set("hi")
+        val set = Set(Common.tittle)
 
         insertSetUseCase(set)
 

@@ -46,6 +46,7 @@ class ImportTextActivity : AppCompatActivity() {
                 intent.putExtra("listArray", list)
                 intent.putExtra("regex", regex)
                 startActivity(intent)
+                finish()
             }
         }
     }

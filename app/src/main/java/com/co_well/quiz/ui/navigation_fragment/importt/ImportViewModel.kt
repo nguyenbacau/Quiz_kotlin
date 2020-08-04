@@ -1,6 +1,7 @@
 package com.co_well.quiz.ui.navigation_fragment.importt
 
 import android.content.Intent
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,6 +9,7 @@ import androidx.lifecycle.ViewModel
 import com.co_well.quiz.domain.interactor.ScanImageUseCase
 import com.co_well.quiz.ui.activity.ImportFileActivity
 import com.co_well.quiz.ui.activity.ScanActivity
+import kotlinx.android.synthetic.main.fragment_import.*
 
 class ImportViewModel : ViewModel() {
 
@@ -17,16 +19,6 @@ class ImportViewModel : ViewModel() {
 
     fun setTitle(title: String){
         _title.value = title
-    }
-
-    val buttonScanClick = View.OnClickListener { view ->
-        val context = view.context
-        context.startActivity(Intent(context, ScanActivity::class.java))
-    }
-
-    val buttonImportClick = View.OnClickListener { view ->
-        val context = view.context
-        context.startActivity(Intent(context, ImportFileActivity::class.java))
     }
 
 

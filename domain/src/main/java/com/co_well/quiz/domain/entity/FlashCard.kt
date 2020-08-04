@@ -8,5 +8,6 @@ data class FlashCard (
     val setName: String,
     val word: String,
     val define: String,
-    @Ignore var flip: Boolean
+    @Ignore var flip: Boolean,
+    var done: Int
 ) : Serializable

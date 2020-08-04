@@ -1,28 +1,24 @@
 package com.co_well.quiz.ui.navigation_fragment.importt
 
+import android.content.Intent
 import android.os.Bundle
-<<<<<<< HEAD
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
-=======
-import android.text.Editable
-import android.text.TextWatcher
-import android.util.Log
-import android.view.*
-import androidx.core.content.edit
->>>>>>> dev
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.co_well.quiz.R
+import com.co_well.quiz.ui.activity.ImportFileActivity
+import com.co_well.quiz.ui.activity.ScanActivity
 import com.co_well.quiz.ui.activity.create_set.TextTableAdapter
 import kotlinx.android.synthetic.main.fragment_import.*
 import kotlinx.android.synthetic.main.fragment_import.flab_add
 import kotlinx.android.synthetic.main.fragment_import.recycler_view_table
 
 class ImportFragment : Fragment() {
-    private lateinit var importViewModel: ImportViewModel
+//    private lateinit var importViewModel: ImportViewModel
 //  private val sharePref = activity?.getSharedPreferences("Quiz", Context.MODE_PRIVATE)
     private lateinit var adapterTable: TextTableAdapter
 
@@ -36,10 +32,23 @@ class ImportFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        importViewModel = ImportViewModel()
+//        importViewModel = ImportViewModel()
 //        onEdtListener()
-        btn_scan.setOnClickListener(importViewModel.buttonScanClick)
-        btn_import.setOnClickListener(importViewModel.buttonImportClick)
+        btn_scan.setOnClickListener{
+            startActivity(Intent(context, ScanActivity::class.java))
+
+            if(!edt_set_name.text.isEmpty()){
+                Common.tittle = edt_set_name.text.toString();
+            }
+
+        }
+        btn_import.setOnClickListener{
+            startActivity(Intent(context, ImportFileActivity::class.java))
+
+            if(!edt_set_name.text.isEmpty()){
+                Common.tittle = edt_set_name.text.toString();
+            }
+        }
 
 //        recycler_view_table.layoutManager = LinearLayoutManager()
         recycler_view_table.layoutManager = LinearLayoutManager(activity)
@@ -49,9 +58,7 @@ class ImportFragment : Fragment() {
 
         addRow()
 
-        if(tv_title.text != null){
-            Common.tittle = tv_title.text.toString();
-        }
+
 
     }
 

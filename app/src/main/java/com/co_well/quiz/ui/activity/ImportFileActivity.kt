@@ -78,6 +78,7 @@ class ImportFileActivity : AppCompatActivity() {
             intent.putExtra("listArray", list)
             intent.putExtra("regex", regex)
             startActivity(intent)
+            finish()
         }
     }
 
@@ -91,6 +92,7 @@ class ImportFileActivity : AppCompatActivity() {
     fun writeText(){
         var intent = Intent(this, ImportTextActivity::class.java)
         startActivity(intent)
+        finish()
     }
 
     override fun onActivityResult(

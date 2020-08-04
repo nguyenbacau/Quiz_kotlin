@@ -7,6 +7,7 @@ import com.co_well.quiz.data.database.entity.SetCardEntity
 import com.co_well.quiz.data.database.entity.SetEntity
 import io.reactivex.Observable
 
+
 @Dao
 abstract class Dao {
 
