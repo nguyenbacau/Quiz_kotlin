@@ -1,11 +1,14 @@
 package com.co_well.quiz.data
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
+import android.util.Log
 import com.co_well.quiz.data.database.Dao
 import com.co_well.quiz.data.database.entity.FlashCardEntity
+import com.co_well.quiz.data.database.entity.SetCardEntity
 import com.co_well.quiz.data.database.entity.SetEntity
 import com.co_well.quiz.data.database.mapper.FlashCardEntityToFlashCard
 import com.co_well.quiz.data.database.mapper.FlashCardToFlashCardEntity
@@ -16,6 +19,8 @@ import com.co_well.quiz.domain.entity.SetCard
 import com.co_well.quiz.domain.repository.Repository
 import com.google.android.gms.vision.Frame
 import com.google.android.gms.vision.text.TextRecognizer
+import io.reactivex.Observable
+import io.reactivex.functions.Function
 import java.io.FileNotFoundException
 
 
@@ -62,13 +67,19 @@ class CardRepositoryImpl(
         dao.insertSet(SetEntity(set.name))
     }
 
-    override fun getAllSet(): ArrayList<SetCard> {
-        val list = dao.getAllSet()
-        val listSet = ArrayList<SetCard>()
-        for (setCardEntity in list) {
-            listSet.add(setCardEntityToSetCard.map(setCardEntity))
+    override fun getAllSet(): Observable<List<SetCard>> {
+        return dao.getAllSet().flatMap { list ->
+            Observable.fromIterable(list)
+                .map { cardEntity -> setCardEntityToSetCard.map(cardEntity) }
+                .toList()
+                .toObservable()
         }
-        return listSet
+    }
+
+    override fun getSet(name: String): Observable<SetCard> {
+        return dao.getSet(name).map { cardEntity ->
+            setCardEntityToSetCard.map(cardEntity)
+        }
     }
 
     override fun updateListCard(listCard: List<FlashCard>) {

@@ -15,9 +15,9 @@ class SetAdapter(onSetClick: OnSetClick) : RecyclerView.Adapter<SetAdapter.SetVi
     private val onclick = onSetClick
 
     fun addListSetCard(listSetCard: List<SetCard>) {
-        val count = list.size
+        list.clear()
         list.addAll(listSetCard)
-        notifyItemRangeInserted(count, listSetCard.size)
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SetViewHolder {

@@ -5,6 +5,7 @@ import androidx.room.Dao
 import com.co_well.quiz.data.database.entity.FlashCardEntity
 import com.co_well.quiz.data.database.entity.SetCardEntity
 import com.co_well.quiz.data.database.entity.SetEntity
+import io.reactivex.Observable
 
 @Dao
 abstract class Dao {
@@ -17,7 +18,11 @@ abstract class Dao {
 
     @Transaction
     @Query("SELECT * FROM SetEntity")
-    abstract fun getAllSet(): List<SetCardEntity>
+    abstract fun getAllSet(): Observable<List<SetCardEntity>>
+
+    @Transaction
+    @Query("SELECT * FROM SetEntity WHERE name = :name")
+    abstract fun getSet(name: String): Observable<SetCardEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun insertSet(setEntity: SetEntity)

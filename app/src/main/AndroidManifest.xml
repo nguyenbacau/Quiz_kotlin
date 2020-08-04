@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.co_well.quiz" >
+    package="com.co_well.quiz">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
@@ -10,9 +10,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
-        <activity android:name=".ui.activity.learn.LearnActivity" >
-        </activity>
+        android:theme="@style/AppTheme">
+        <activity android:name=".ui.activity.learn.flash_card.FlashCardActivity"></activity>
+        <activity android:name=".ui.activity.learn.learns.CardLearnActivity" />
+        <activity android:name=".ui.activity.learn.LearnActivity" />
         <activity android:name=".ui.activity.ImportTextActivity" />
         <activity android:name=".ui.activity.interf.ImportTextActivity" />
         <activity android:name=".ui.activity.create_set.CreateSetActivity" />
@@ -20,7 +21,7 @@
         <activity android:name=".ui.activity.ScanActivity" />
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

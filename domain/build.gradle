@@ -4,6 +4,7 @@ apply plugin: 'kotlin'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.room:room-rxjava2:2.2.5'
 }
 
 sourceCompatibility = "1.8"

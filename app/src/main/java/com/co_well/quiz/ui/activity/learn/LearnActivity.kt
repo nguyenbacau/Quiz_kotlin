@@ -3,8 +3,8 @@ package com.co_well.quiz.ui.activity.learn
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import android.widget.Button
@@ -13,46 +13,68 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.co_well.quiz.InjectionUtil
 import com.co_well.quiz.R
 import com.co_well.quiz.domain.entity.FlashCard
-import com.co_well.quiz.domain.entity.SetCard
-import com.co_well.quiz.domain.interactor.UpdateListCardUseCase
+import com.co_well.quiz.domain.interactor.GetSetUseCase
 import com.co_well.quiz.ui.activity.interf.OnLearnClick
+import com.co_well.quiz.ui.activity.learn.learns.CardLearnActivity
 import kotlinx.android.synthetic.main.activity_learn.*
 
 
 class LearnActivity : AppCompatActivity(), OnLearnClick {
 
-    private lateinit var setCard: SetCard
+    private lateinit var setName: String
     private lateinit var learnViewModel: LearnViewModel
     private lateinit var learnAdapter: LearnAdapter
-    lateinit var updateListCardUseCase: UpdateListCardUseCase
+    lateinit var tvSetName: TextView
+    lateinit var tvSetSize: TextView
+    lateinit var btnFlashCard: Button
+    lateinit var getSetUseCase: GetSetUseCase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         InjectionUtil.injectLearn(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_learn)
+        tvSetName = findViewById(R.id.tv_set_name)
+        tvSetSize = findViewById(R.id.tv_set_size)
+        btnFlashCard = findViewById(R.id.btn_flashCard)
 
-        learnViewModel = LearnViewModel()
-        setCard = intent.extras?.get("setCard") as SetCard
+        learnViewModel = LearnViewModel(getSetUseCase)
+        setName = intent.extras?.get("set_name") as String
 
+        learnViewModel.getSet(setName)
         learnAdapter = LearnAdapter(this)
         recycler_view_learn.apply {
-            layoutManager = LinearLayoutManager(this@LearnActivity)
+            layoutManager = LinearLayoutManager(this@LearnActivity, RecyclerView.HORIZONTAL, false)
             adapter = learnAdapter
         }
 
-        learnViewModel.addList(setCard.cardList)
         learnViewModel.listFlashCard.observe(this, Observer {
             learnAdapter.addListSetCard(it)
         })
 
+        learnViewModel.tvSetName.observe(this, Observer {
+            tvSetName.text = it
+        })
+
+        learnViewModel.tvSetSize.observe(this, Observer {
+            tvSetSize.text = it.toString()
+        })
+
+        onClick()
+    }
+
+    fun onClick() {
+        btnFlashCard.setOnClickListener {
+            startFlashCardActivity()
+        }
     }
 
     override fun learnClick(flashCard: FlashCard, cardView: CardView, textView: TextView) {
-        val oa1 = ObjectAnimator.ofFloat(cardView, "scaleX", 1f, 0f)
-        val oa2 = ObjectAnimator.ofFloat(cardView, "scaleX", 0f, 1f)
+        val oa1 = ObjectAnimator.ofFloat(cardView, "scaleY", 1f, 0f)
+        val oa2 = ObjectAnimator.ofFloat(cardView, "scaleY", 0f, 1f)
         oa1.setDuration(100);
         oa2.setDuration(100);
         oa1.interpolator = DecelerateInterpolator()
@@ -74,30 +96,17 @@ class LearnActivity : AppCompatActivity(), OnLearnClick {
     }
 
     override fun buttonClick(flashCard: FlashCard, button: Button, position: Int) {
-        when (button.id) {
-            R.id.btn_lv1 -> {
-                flashCard.done = 1
-                learnAdapter.notifyItemChanged(position)
-            }
-            R.id.btn_lv2 -> {
-                flashCard.done = 2
-                learnAdapter.notifyItemChanged(position)
-            }
-            R.id.btn_lv3 -> {
-                flashCard.done = 3
-                learnAdapter.notifyItemChanged(position)
-            }
-            R.id.btn_lv4 -> {
-                flashCard.done = 4
-                learnAdapter.notifyItemChanged(position)
-            }
-        }
+        TODO("Not yet implemented")
     }
 
-    override fun onBackPressed() {
-        val list = learnAdapter.getList()
-        updateListCardUseCase.invoke(list)
-        super.onBackPressed()
+    override fun buttonFullScreenClick() {
+        startFlashCardActivity()
+    }
+
+    fun startFlashCardActivity() {
+        val intent = Intent(this, CardLearnActivity::class.java)
+        intent.putExtra("set_name", setName)
+        startActivity(intent)
     }
 
 }

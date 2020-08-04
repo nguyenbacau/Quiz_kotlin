@@ -68,7 +68,7 @@ class CreateSetActivity : AppCompatActivity(), OnTextClick {
         val listFlashCard = arrayListOf<FlashCard>()
         for (string in list) {
             val str = string.split(regex).toTypedArray()
-            val flashCard = FlashCard(0,"hi",str[0], str[1], 1,true)
+            val flashCard = FlashCard(0, "hi", str[0], str[1], 1, true)
             listFlashCard.add(flashCard)
         }
         insertCardUseCase(listFlashCard)
@@ -77,14 +77,6 @@ class CreateSetActivity : AppCompatActivity(), OnTextClick {
 
         insertSetUseCase(set)
 
-
-        val listGet = getAllSetUseCase()
-        for (i in listGet){
-            val a = i.cardList
-            for (j in a){
-                Log.e("zzz", "saveData: " + j.word + "---------" + j.define )
-            }
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
