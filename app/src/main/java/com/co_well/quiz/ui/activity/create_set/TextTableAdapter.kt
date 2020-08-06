@@ -10,7 +10,6 @@ import com.co_well.quiz.R
 import com.co_well.quiz.ui.activity.interf.OnTextTableClick
 import kotlinx.android.synthetic.main.layout_item_text_table.view.*
 
-class TextTableAdapter() :
 class TextTableAdapter(onTextTableClick: OnTextTableClick) :
     RecyclerView.Adapter<TextTableAdapter.TextTableViewHolder>() {
     private lateinit var regex: String
@@ -25,8 +24,6 @@ class TextTableAdapter(onTextTableClick: OnTextTableClick) :
     fun addRegex(regex: String) {
         this.regex = regex
     }
-
-    fun getList(): ArrayList<String>{
 
     fun updateRow(position: Int, text: String) {
         list[position] = text
@@ -46,7 +43,6 @@ class TextTableAdapter(onTextTableClick: OnTextTableClick) :
     override fun getItemCount(): Int = list.size
 
     override fun onBindViewHolder(holder: TextTableViewHolder, position: Int) {
-        holder.bind(list[position], regex)
         holder.bind(list[position], regex, textTableClick, position)
     }
 
@@ -57,25 +53,19 @@ class TextTableAdapter(onTextTableClick: OnTextTableClick) :
         private val edtWord: EditText = itemView.findViewById(R.id.edt_word)
         private val edtDefine: EditText = itemView.findViewById(R.id.edt_define)
 
-        fun bind(string: String, regex: String) {
         fun bind(string: String, regex: String, onTextTableClick: OnTextTableClick, position: Int) {
+
             if (!regex.isEmpty()) {
                 if (string.contains(regex)) {
                     var str = string.split(regex).toTypedArray()
-                    itemView.edt_english.setText(str[0])
-                    itemView.edt_vietnamese.setText(str[1])
                     edtWord.setText(str[0])
                     edtDefine.setText(str[1])
                 } else if (string.contains(Constant.regex)) {
                     var str = string.split(Constant.regex).toTypedArray()
-                    itemView.edt_english.setText(str[0])
-                    itemView.edt_vietnamese.setText(str[1])
                     edtWord.setText(str[0])
                     edtDefine.setText(str[1])
                 }
             } else {
-                itemView.edt_english.setText("")
-                itemView.edt_vietnamese.setText("")
                 edtWord.setText("")
                 edtDefine.setText("")
             }
@@ -95,5 +85,6 @@ class TextTableAdapter(onTextTableClick: OnTextTableClick) :
                 onTextTableClick.onTextTableClick(edtWord, edtDefine, position, regex)
             }
         }
+
     }
 }

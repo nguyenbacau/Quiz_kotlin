@@ -19,9 +19,8 @@ import kotlinx.android.synthetic.main.fragment_import.*
 import kotlinx.android.synthetic.main.fragment_import.flab_add
 import kotlinx.android.synthetic.main.fragment_import.recycler_view_table
 
-class ImportFragment : Fragment() {
 class ImportFragment : Fragment(), OnTextTableClick {
-//    private lateinit var importViewModel: ImportViewModel
+    //    private lateinit var importViewModel: ImportViewModel
 //  private val sharePref = activity?.getSharedPreferences("Quiz", Context.MODE_PRIVATE)
     private lateinit var adapterTable: TextTableAdapter
 
@@ -55,11 +54,13 @@ class ImportFragment : Fragment(), OnTextTableClick {
 
 //        recycler_view_table.layoutManager = LinearLayoutManager()
         recycler_view_table.layoutManager = LinearLayoutManager(activity)
-        adapterTable = TextTableAdapter()
         adapterTable = TextTableAdapter(this)
         adapterTable.addRegex("")
         recycler_view_table.adapter = adapterTable
+
         addRow()
+
+
 
     }
 

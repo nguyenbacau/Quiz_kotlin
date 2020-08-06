@@ -4,9 +4,7 @@
     android:id="@+id/contraint_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/border_black">
-    
 
     <EditText
         android:id="@+id/edt_word"
@@ -14,28 +12,17 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
-        android:id="@+id/edt_english"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/view"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"/>
-    
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:id="@+id/view"
         android:layout_width="2dp"
         android:layout_height="0dp"
         android:background="#000000"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_width="2dp"
-        android:layout_height="0dp"/>
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,12 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
-        app:layout_constraintStart_toEndOf="@id/view"
-        android:id="@+id/edt_vietnamese"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"/>
         app:layout_constraintStart_toEndOf="@id/view"
         app:layout_constraintTop_toTopOf="parent" />
 
