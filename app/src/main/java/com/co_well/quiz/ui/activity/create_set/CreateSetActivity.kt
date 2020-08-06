@@ -1,9 +1,12 @@
 package com.co_well.quiz.ui.activity.create_set
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -15,12 +18,15 @@ import com.co_well.quiz.domain.entity.Set
 import com.co_well.quiz.domain.interactor.GetAllSetUseCase
 import com.co_well.quiz.domain.interactor.InsertSetUseCase
 import com.co_well.quiz.domain.interactor.InsertCardUseCase
+import com.co_well.quiz.domain.interactor.InsertSetUseCase
 import com.co_well.quiz.ui.activity.interf.OnTextClick
+import com.co_well.quiz.ui.activity.interf.OnTextTableClick
 import com.co_well.quiz.ui.navigation_fragment.importt.Common
 import kotlinx.android.synthetic.main.activity_create_set.*
 
 
 class CreateSetActivity : AppCompatActivity(), OnTextClick {
+class CreateSetActivity : AppCompatActivity(), OnTextClick, OnTextTableClick {
     private lateinit var list: ArrayList<String>
     private lateinit var regex: String
     private lateinit var adapterTable: TextTableAdapter
@@ -37,6 +43,7 @@ class CreateSetActivity : AppCompatActivity(), OnTextClick {
         regex = intent.extras?.get("regex") as String
         //recycler_view_show
         recycler_view_show .layoutManager =
+        recycler_view_show.layoutManager =
             GridLayoutManager(this, 3, GridLayoutManager.HORIZONTAL, false)
         recycler_view_show.addItemDecoration(
             GridSpacingItemDecoration(20, 3)
@@ -46,6 +53,7 @@ class CreateSetActivity : AppCompatActivity(), OnTextClick {
         //recycler_view_table
         recycler_view_table.layoutManager = LinearLayoutManager(this)
         adapterTable = TextTableAdapter()
+        adapterTable = TextTableAdapter(this)
         adapterTable.addRegex(regex)
         recycler_view_table.adapter = adapterTable
 
@@ -72,6 +80,11 @@ class CreateSetActivity : AppCompatActivity(), OnTextClick {
             val str = string.split(regex).toTypedArray()
             val flashCard = FlashCard(0, Common.tittle, str[0], str[1], true, 1)
             listFlashCard.add(flashCard)
+            if (!string.isEmpty()) {
+                val str = string.split(regex).toTypedArray()
+                val flashCard = FlashCard(0, Common.tittle, str[0], str[1], true, 1)
+                listFlashCard.add(flashCard)
+            }
         }
         insertCardUseCase(listFlashCard)
 
@@ -79,6 +92,7 @@ class CreateSetActivity : AppCompatActivity(), OnTextClick {
 
         insertSetUseCase(set)
 
+        insertSetUseCase(Set(Common.tittle))
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -97,5 +111,29 @@ class CreateSetActivity : AppCompatActivity(), OnTextClick {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onTextTableClick(edtWord: EditText, edtDefine: EditText, position: Int, regex: String) {
+        edtWord.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable) {
+                val text = "$s $regex ${edtDefine.text}"
+                adapterTable.updateRow(position, text)
+            }
+
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+            }
+        })
+
+        edtDefine.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable) {
+                val text = "${edtWord.text} $regex $s"
+                adapterTable.updateRow(position, text)
+            }
+
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+            }
+        })
     }
 }
