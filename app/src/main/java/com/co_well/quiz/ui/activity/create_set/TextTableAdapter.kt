@@ -22,6 +22,7 @@ class TextTableAdapter() :
     }
 
     fun getList(): ArrayList<String>{
+
         return list
     }
 
@@ -44,7 +45,6 @@ class TextTableAdapter() :
         ) {
 
         fun bind(string: String, regex: String) {
-
             if (!regex.isEmpty()) {
                 if (string.contains(regex)) {
                     var str = string.split(regex).toTypedArray()
@@ -60,6 +60,5 @@ class TextTableAdapter() :
                 itemView.edt_vietnamese.setText("")
             }
         }
-
     }
 }

@@ -39,7 +39,7 @@ class LearnActivity : AppCompatActivity(), OnLearnClick {
         setContentView(R.layout.activity_learn)
         tvSetName = findViewById(R.id.tv_set_name)
         tvSetSize = findViewById(R.id.tv_set_size)
-        btnFlashCard = findViewById(R.id.btn_flashCard)
+        btnFlashCard = findViewById(R.id.btn_match)
 
         learnViewModel = LearnViewModel(getSetUseCase)
         setName = intent.extras?.get("set_name") as String

@@ -55,6 +55,7 @@ class CreateSetActivity : AppCompatActivity(), OnTextClick {
 
     override fun textClick(string: String) {
         adapterTable.addText(string)
+
         recycler_view_table.scrollToPosition(0)
     }
 

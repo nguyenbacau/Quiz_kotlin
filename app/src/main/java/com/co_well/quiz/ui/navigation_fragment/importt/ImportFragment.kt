@@ -55,10 +55,7 @@ class ImportFragment : Fragment() {
         adapterTable = TextTableAdapter()
         adapterTable.addRegex("")
         recycler_view_table.adapter = adapterTable
-
         addRow()
-
-
 
     }
 

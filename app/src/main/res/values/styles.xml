@@ -7,4 +7,16 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="ButtonLearn">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">100dp</item>
+        <item name="android:layout_marginStart">4dp</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+<!--    android:layout_width="0dp"-->
+<!--    android:layout_height="85dp"-->
+<!--    android:layout_marginBottom="172dp"-->
+<!--    android:textStyle="bold"-->
+
 </resources>

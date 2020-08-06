@@ -11,14 +11,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="10dp" />
+        app:layout_constraintGuide_begin="8dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineEnd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="10dp" />
+        app:layout_constraintGuide_percent="0.98053527" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_learn"
@@ -49,64 +49,89 @@
         app:layout_constraintTop_toBottomOf="@id/tv_set_name" />
 
     <Button
-        android:id="@+id/btn_learn"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:drawableTop="@drawable/ic_student"
-        android:text="LEARN"
-        app:layout_constraintEnd_toStartOf="@id/btn_flashCard"
-        app:layout_constraintStart_toEndOf="@id/guidelineStart"
-        app:layout_constraintTop_toBottomOf="@id/tv_set_size" />
-
-    <Button
-        android:id="@+id/btn_flashCard"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="10dp"
-        android:drawableTop="@drawable/ic_pay"
-        android:text="THẺ GHI NHỚ"
-        app:layout_constraintBottom_toBottomOf="@id/btn_learn"
-        app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
-        app:layout_constraintStart_toEndOf="@id/btn_learn"
-        app:layout_constraintTop_toTopOf="@id/btn_learn" />
-
-    <Button
-        android:id="@+id/btn_write"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="5dp"
-        android:drawableTop="@drawable/ic_pencil"
-        android:text="VIẾT"
-        app:layout_constraintEnd_toStartOf="@id/btn_match"
-        app:layout_constraintStart_toStartOf="@id/guidelineStart"
-        app:layout_constraintTop_toBottomOf="@id/btn_learn" />
-
-    <Button
         android:id="@+id/btn_match"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="20dp"
         android:drawableTop="@drawable/ic_options"
-        android:text="GHÉP THẺ"
-        app:layout_constraintBottom_toBottomOf="@id/btn_write"
-        app:layout_constraintEnd_toStartOf="@id/btn_test"
-        app:layout_constraintStart_toEndOf="@id/btn_write"
-        app:layout_constraintTop_toTopOf="@id/btn_write" />
+        android:text="Learn"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/guidelineStart"
+        app:layout_constraintTop_toBottomOf="@+id/tv_set_size" />
 
     <Button
-        android:id="@+id/btn_test"
+        android:id="@+id/btn_forgot"
+        style="@style/ButtonLearn"
+        android:layout_marginTop="20dp"
+        android:text="-"
+        android:textSize="40dp"
+        android:drawableTop="@drawable/ic_student"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/guidelineStart"
+        app:layout_constraintTop_toBottomOf="@+id/btn_match" />
+
+    <Button
+        android:id="@+id/btn_rm1"
+        style="@style/ButtonLearn"
+        android:layout_marginStart="4dp"
+        android:text="+"
+        android:textSize="40dp"
+        android:drawableTop="@drawable/ic_baseline_add_circle_outline_24"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_forgot"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/btn_forgot"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btn_rm2"
+        style="@style/ButtonLearn"
+        android:text="++"
+        android:textSize="40dp"
+        android:drawableTop="@drawable/ic_baseline_alarm_add_24"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_rm1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="@+id/btn_rm1"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btn_rmed"
+        style="@style/ButtonLearn"
+        android:text="done"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:drawableTop="@drawable/ic_baseline_check_24"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_rm2"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
+        app:layout_constraintHorizontal_bias="0.272"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toTopOf="@+id/btn_rm2"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.26" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="5dp"
-        android:drawableTop="@drawable/ic_task"
-        android:text="KIỂM TRA"
-        app:layout_constraintBottom_toBottomOf="@id/btn_write"
-        app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
-        app:layout_constraintStart_toEndOf="@id/btn_match"
-        app:layout_constraintTop_toTopOf="@id/btn_write" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.74" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
