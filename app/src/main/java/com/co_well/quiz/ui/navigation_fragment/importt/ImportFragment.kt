@@ -7,17 +7,19 @@ import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.co_well.quiz.R
 import com.co_well.quiz.ui.activity.ImportFileActivity
 import com.co_well.quiz.ui.activity.ScanActivity
 import com.co_well.quiz.ui.activity.create_set.TextTableAdapter
+import com.co_well.quiz.ui.activity.interf.OnTextTableClick
 import kotlinx.android.synthetic.main.fragment_import.*
 import kotlinx.android.synthetic.main.fragment_import.flab_add
 import kotlinx.android.synthetic.main.fragment_import.recycler_view_table
 
-class ImportFragment : Fragment() {
+class ImportFragment : Fragment(), OnTextTableClick {
 //    private lateinit var importViewModel: ImportViewModel
 //  private val sharePref = activity?.getSharedPreferences("Quiz", Context.MODE_PRIVATE)
     private lateinit var adapterTable: TextTableAdapter
@@ -52,7 +54,7 @@ class ImportFragment : Fragment() {
 
 //        recycler_view_table.layoutManager = LinearLayoutManager()
         recycler_view_table.layoutManager = LinearLayoutManager(activity)
-        adapterTable = TextTableAdapter()
+        adapterTable = TextTableAdapter(this)
         adapterTable.addRegex("")
         recycler_view_table.adapter = adapterTable
 
@@ -69,6 +71,9 @@ class ImportFragment : Fragment() {
         }
     }
 
+    override fun onTextTableClick(edtWord: EditText, edtDefine: EditText, position: Int, regex: String) {
+        TODO("Not yet implemented")
+    }
 
 
 //    fun onEdtListener() {
