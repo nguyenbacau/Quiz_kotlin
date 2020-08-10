@@ -74,9 +74,14 @@ object InjectionUtil {
         GetSetUseCase(repoImpl)
     }
 
+    val getRank: GetRankCardUseCase by lazy {
+        GetRankCardUseCase(repoImpl)
+    }
+
     fun injectMain(activity: MainActivity) {
         context = activity.applicationContext
         activity.getAllSetUseCase = getAllSet
+        activity.getRankCardUseCase = getRank
     }
 
     fun inject(activity: ScanActivity) {

@@ -7,10 +7,12 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.co_well.quiz.domain.interactor.GetAllSetUseCase
+import com.co_well.quiz.domain.interactor.GetRankCardUseCase
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
     lateinit var getAllSetUseCase: GetAllSetUseCase
+    lateinit var getRankCardUseCase: GetRankCardUseCase
     override fun onCreate(savedInstanceState: Bundle?) {
         InjectionUtil.injectMain(this)
         super.onCreate(savedInstanceState)

@@ -82,6 +82,15 @@ class CardRepositoryImpl(
         }
     }
 
+    override fun getRank(rank: Int): Observable<List<FlashCard>> {
+        return dao.getRank(rank).flatMap { list ->
+            Observable.fromIterable(list)
+                .map { flashCardEntity -> flashCardEntityToFlashCard.map(flashCardEntity) }
+                .toList()
+                .toObservable()
+        }
+    }
+
     override fun updateListCard(listCard: List<FlashCard>) {
         val list = ArrayList<FlashCardEntity>()
         for (flashCard in listCard) {

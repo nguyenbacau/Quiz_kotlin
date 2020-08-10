@@ -25,6 +25,9 @@ abstract class Dao {
     @Query("SELECT * FROM SetEntity WHERE name = :name")
     abstract fun getSet(name: String): Observable<SetCardEntity>
 
+    @Query("SELECT * FROM FlashCardEntity WHERE done = :rank")
+    abstract fun getRank(rank: Int): Observable<List<FlashCardEntity>>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun insertSet(setEntity: SetEntity)
 

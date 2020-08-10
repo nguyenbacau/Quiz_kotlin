@@ -1,21 +1,18 @@
-package com.co_well.quiz.ui.activity.learn
+package com.co_well.quiz.ui.navigation_fragment.search
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.co_well.quiz.R
 import com.co_well.quiz.domain.entity.FlashCard
-import com.co_well.quiz.domain.entity.SetCard
 import com.co_well.quiz.ui.activity.interf.OnLearnClick
 
-class LearnAdapter(onLearnClick: OnLearnClick) :
-    RecyclerView.Adapter<LearnAdapter.LearnViewHolder>() {
+class CardSearchAdapter(onLearnClick: OnLearnClick) :
+    RecyclerView.Adapter<CardSearchAdapter.CardSearchViewHolder>() {
     private val list: MutableList<FlashCard> = mutableListOf()
     private val onClick = onLearnClick
 
@@ -25,26 +22,21 @@ class LearnAdapter(onLearnClick: OnLearnClick) :
         notifyDataSetChanged()
     }
 
-    fun getList(): List<FlashCard>{
-        return list
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LearnViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardSearchViewHolder {
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.layout_item_learn, parent, false)
-        return LearnViewHolder(view)
+            LayoutInflater.from(parent.context).inflate(R.layout.layout_item_learn_search, parent, false)
+        return CardSearchViewHolder(view)
     }
 
     override fun getItemCount(): Int = list.size
 
-    override fun onBindViewHolder(holder: LearnViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CardSearchViewHolder, position: Int) {
         holder.bind(list[position], onClick)
     }
 
-    class LearnViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class CardSearchViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private var textView: TextView = view.findViewById(R.id.tv_learn)
         private var cardView: CardView = view.findViewById(R.id.card_view_learn)
-        private var btnFullScreen: ImageView = view.findViewById(R.id.btn_fullScreen)
 
         fun bind(flashCard: FlashCard, onLearnClick: OnLearnClick) {
             if (flashCard.flip) {
@@ -53,7 +45,6 @@ class LearnAdapter(onLearnClick: OnLearnClick) :
                 textView.text = flashCard.define
             }
 
-            btnFullScreen.setOnClickListener{onLearnClick.buttonFullScreenClick()}
             textView.setOnClickListener { onLearnClick.learnClick(flashCard, cardView, textView) }
 
         }

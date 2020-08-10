@@ -29,47 +29,6 @@
             android:layout_marginBottom="5dp"
             android:src="@drawable/ic_expand" />
 
-        <!--        <LinearLayout-->
-        <!--            android:id="@+id/ll1"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_alignParentBottom="true"-->
-        <!--            android:weightSum="4">-->
-
-        <!--            <Button-->
-        <!--                android:id="@+id/btn_lv1"-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:layout_margin="10dp"-->
-        <!--                android:layout_weight="1"-->
-        <!--                android:text="-" />-->
-
-        <!--            <Button-->
-        <!--                android:id="@+id/btn_lv2"-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:layout_margin="10dp"-->
-        <!--                android:layout_weight="1"-->
-        <!--                android:text="+" />-->
-
-        <!--            <Button-->
-        <!--                android:id="@+id/btn_lv3"-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:layout_margin="10dp"-->
-        <!--                android:layout_weight="1"-->
-        <!--                android:text="++" />-->
-
-        <!--            <Button-->
-        <!--                android:id="@+id/btn_lv4"-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:layout_margin="10dp"-->
-        <!--                android:layout_weight="1"-->
-        <!--                android:text="Done"-->
-        <!--                android:textAllCaps="false" />-->
-
-        <!--        </LinearLayout>-->
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

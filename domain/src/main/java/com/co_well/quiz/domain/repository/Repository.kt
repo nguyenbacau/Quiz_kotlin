@@ -16,6 +16,8 @@ interface Repository {
 
     fun getSet(name: String): Observable<SetCard>
 
+    fun getRank(rank: Int): Observable<List<FlashCard>>
+
     fun updateListCard(listCard: List<FlashCard>)
 
     fun importFile()

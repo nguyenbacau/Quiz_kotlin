@@ -13,7 +13,8 @@
         <TextView
             android:id="@+id/tv_learn"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_above="@id/ll1"
             android:layout_alignParentTop="true"
             android:gravity="center"
             android:text="hello"
@@ -27,40 +28,43 @@
             android:weightSum="4">
 
             <Button
-                android:background="@drawable/border_circle_white"
                 android:id="@+id/btn_lv1"
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:text="-" />
+                android:background="@drawable/border_circle_white"
+                android:text="Khó nhớ"
+                android:textAllCaps="false" />
 
             <Button
-                android:background="@drawable/border_circle_white"
                 android:id="@+id/btn_lv2"
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:text="+" />
+                android:background="@drawable/border_circle_white"
+                android:text="Đã nhớ"
+                android:textAllCaps="false" />
 
             <Button
-                android:background="@drawable/border_circle_white"
                 android:id="@+id/btn_lv3"
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:text="++" />
+                android:background="@drawable/border_circle_white"
+                android:text="Nhớ rất rõ"
+                android:textAllCaps="false" />
 
             <Button
-                android:background="@drawable/border_circle_white"
                 android:id="@+id/btn_lv4"
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:text="Done"
+                android:background="@drawable/border_circle_white"
+                android:text="Đã hiểu"
                 android:textAllCaps="false" />
 
         </LinearLayout>
